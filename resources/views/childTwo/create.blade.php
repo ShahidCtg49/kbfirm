@@ -1,6 +1,6 @@
 @extends('layout.app')
-@section('content')
 
+@section('content')
 <div class="col-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
@@ -24,11 +24,11 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="sub_head_id">Subhead Head</label>
+              <label for="sub_head_id">Sub head Head</label>
               <select name="sub_head_id" class="form-control" id="sub_head_id">
                 <option value="">Select Sub head</option>
                 @forelse($subhead as $m)
-                  <option class="" value="{{$m->id}}">{{$m->head_name}} - {{$m->head_code}}</option>
+                  <option value="{{$m->id}}">{{$m->head_name}} - {{$m->head_code}}</option>
                 @empty
                 <option value="">No head found</option>
                 @endforelse
@@ -37,10 +37,10 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="child_one_id">Child One Head</label>
+              <label for="child_one_id">Child One</label>
               <select name="child_one_id" class="form-control" id="child_one_id">
-                <option value="">Select Child One Head</option>
-                @forelse($childone as $m)
+                <option value="">Select Child One</option>
+                @forelse($childOne as $m)
                   <option class="" value="{{$m->id}}">{{$m->head_name}} - {{$m->head_code}}</option>
                 @empty
                 <option value="">No head found</option>
@@ -50,13 +50,13 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="head_name">Head Name</label>
+              <label for="head_name">Child Two</label>
               <input type="text" class="form-control" id="head_name" name="head_name">
             </div>
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="head_code">Head Code</label>
+              <label for="head_code">Child Two Code</label>
               <input type="text" class="form-control" id="head_code" name="head_code">
             </div>
           </div>

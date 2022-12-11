@@ -1,6 +1,6 @@
 @extends('layout.app')
-@section('content')
 
+@section('content')
 <div class="col-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
@@ -24,9 +24,9 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="sub_head_id">Subhead Head</label>
+              <label for="sub_head_id">Sub head Head</label>
               <select name="sub_head_id" class="form-control" id="sub_head_id">
-                <option value="">Select Subhead Head</option>
+                <option value="">Select Sub Head</option>
                 @forelse($subhead as $m)
                   <option class="" value="{{$m->id}}">{{$m->head_name}} - {{$m->head_code}}</option>
                 @empty
@@ -37,13 +37,13 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="head_name">Head Name</label>
+              <label for="head_name">Child One</label>
               <input type="text" class="form-control" id="head_name" name="head_name">
             </div>
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="head_code">Head Code</label>
+              <label for="head_code">Child One Code</label>
               <input type="text" class="form-control" id="head_code" name="head_code">
             </div>
           </div>

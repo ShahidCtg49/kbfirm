@@ -15,7 +15,7 @@ class SubHeadController extends Controller
      */
     public function index()
     {
-        $subHead= subHead::paginate(10);
+        $subHead= SubHead::paginate(10);
         return view('subHead.index',compact('subHead'));
     }
 
@@ -38,7 +38,7 @@ class SubHeadController extends Controller
      */
     public function store(Request $request)
     {
-        $cat = new subHead;
+        $cat = new SubHead;
         $cat->master_head_id = $request->master_head_id;
         $cat->head_name = $request->head_name;
         $cat->head_code = $request->head_code;

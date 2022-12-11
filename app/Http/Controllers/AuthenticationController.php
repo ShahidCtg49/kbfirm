@@ -39,11 +39,11 @@ class AuthenticationController extends Controller
             $user=User::where('phone',$request->PhoneNumber)->where('password',sha1($request->password))->first();
             if($user) {
                 $this->setSession($user);
-                return redirect()->route($user->role->identity.'.dashboard')->with($this->resMessageHtml (true,null,'Successfully login'));
+                return redirect()->route($user->role->identity.'.dashboard')->with($this->resMessageHtml (true, null, 'Successfully login'));
             }
         }catch(Exception $e) {
             dd($e);
-            return redirect('login')->with($this->resMessageHtml(false,'error','Your phone number or password is wrong!'));
+            return redirect('login')->with($this->resMessageHtml(false, 'error', 'Your phone number or password is wrong!'));
         }
     }
     public function setSession ($user){
@@ -57,7 +57,7 @@ class AuthenticationController extends Controller
                 'language'=>$user->language,
                 'image'=>$user->image?$user->image:'no-image.png'
             ]
-            );
+        );
     }
     public function singOut(){
         request()->session()->flush();

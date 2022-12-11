@@ -41,9 +41,9 @@ class ChildOneController extends Controller
     public function store(Request $request)
     {
         $cat = new childOne;
-        $cat->master_head = $request->master_head;
-        $cat->sub_head = $request->sub_head;
-        $cat->child_one = $request->child_one;
+        $cat->sub_head_id = $request->sub_head_id;
+        $cat->head_name = $request->head_name;
+        $cat->head_code = $request->head_code;
         $cat->opening_balance = $request->opening_balance;
         $cat->save();
         return redirect()->route('childOne.index');
@@ -85,9 +85,9 @@ class ChildOneController extends Controller
     public function update(Request $request, $id)
     {
         $childOne=childOne::findOrFail($id);
-        $childOne->master_head = $request->master_head;
-        $childOne->sub_head = $request->sub_head;
-        $childOne->child_one = $request->child_one;
+        $childOne->sub_head_id = $request->sub_head_id;
+        $childOne->head_name = $request->head_name;
+        $childOne->head_code = $request->head_code;
         $childOne->opening_balance = $request->opening_balance;
         $childOne->save();
         return redirect()->route('childOne.index');

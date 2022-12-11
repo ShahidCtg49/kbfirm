@@ -16,19 +16,15 @@ return new class extends Migration
         Schema::create('investor_payments', function (Blueprint $table) {
             $table->id();
             $table->string('investor_id');
-            $table->string('name');
             $table->string('date');
             $table->string('book_no');
             $table->string('receipt_no');
             $table->string('picture');
-            $table->string('particulars');
             $table->string('payment_method');
-            $table->string('collection_for_month');
-            $table->string('amount');
-            $table->string('per_share_amount')->nullable();
-            $table->string('total_deposits')->nullable();
-            $table->string('dues')->nullable();
-            $table->string('advance')->nullable();
+            $table->string('fees_month');
+            $table->decimal('amount',10,2);
+            $table->decimal('actual_amount',10,2);
+            $table->integer('number_of_share');
 
              // default
              $table->boolean('account_status')->default(1)->nullable();

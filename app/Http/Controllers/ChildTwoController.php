@@ -17,7 +17,7 @@ class ChildTwoController extends Controller
      */
     public function index()
     {
-        $childTwo= ChildTwo::paginate(10);
+        $childTwo= ChildTwo::latest()->paginate(10);
         return view('childTwo.index', compact('childTwo'));
     }
 
@@ -30,8 +30,8 @@ class ChildTwoController extends Controller
     {
         $master=MasterAccount::all();
         $subhead=SubHead::all();
-        $childone=ChildOne::all();
-        return view('childTwo.create', compact('master','subhead','childOne'));
+        $childOne=ChildOne::all();
+        return view('childTwo.create', compact('master','subhead','childOne',));
     }
 
     /**
@@ -43,10 +43,9 @@ class ChildTwoController extends Controller
     public function store(Request $request)
     {
         $cat = new childTwo;
-        $cat->master_head = $request->master_head;
-        $cat->sub_head = $request->sub_head;
-        $cat->child_one = $request->child_one;
-        $cat->child_two = $request->child_two;
+        $cat->child_one_id = $request->child_one_id;
+        $cat->head_name = $request->head_name;
+        $cat->head_code = $request->head_code;
         $cat->opening_balance = $request->opening_balance;
         $cat->save();
         return redirect()->route('childTwo.index');
@@ -73,7 +72,7 @@ class ChildTwoController extends Controller
     {
         $master=MasterAccount::all();
         $subhead=SubHead::all();
-        $childone=ChildOne::all();
+        $childOne=ChildOne::all();
         $childTwo = childTwo::findOrFail($id);
         return view('childTwo.edit',compact('childTwo','master','subhead','childOne'));
     }
@@ -88,10 +87,9 @@ class ChildTwoController extends Controller
     public function update(Request $request, $id)
     {
         $childTwo=childTwo::findOrFail($id);
-        $childTwo->master_head = $request->master_head;
-        $childTwo->sub_head = $request->sub_head;
-        $childTwo->child_one = $request->child_one;
-        $childTwo->child_two = $request->child_two;
+        $childTwo->child_one_id = $request->child_one_id;
+        $childTwo->head_name = $request->head_name;
+        $childTwo->head_code = $request->head_code;
         $childTwo->opening_balance = $request->opening_balance;
         $childTwo->save();
         return redirect()->route('childTwo.index');

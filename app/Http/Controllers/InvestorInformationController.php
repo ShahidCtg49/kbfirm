@@ -76,9 +76,10 @@ class InvestorInformationController extends Controller
      * @param  \App\Models\InvestorInformation  $investorInformation
      * @return \Illuminate\Http\Response
      */
-    public function show(InvestorInformation $investorInformation)
+    public function show($id)
     {
-        //
+        $investor_information = InvestorInformation::findOrFail($id);
+        return view('investor.view',compact('investor_information'));
     }
 
     /**

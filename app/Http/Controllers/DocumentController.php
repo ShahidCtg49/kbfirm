@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Document\AddNewRequest;
-use App\Http\Requests\Document\UpdateRequest;
 use App\Models\Document;
-use Exception;
+use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
@@ -16,8 +14,8 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $documents=Document::paginate(10);
-        return view('document.index',compact('documents'));
+        $document= Document::paginate(10);
+        return view('document.index', compact('document'));
     }
 
     /**
@@ -36,39 +34,29 @@ class DocumentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AddNewRequest $r)
+    public function store(Request $request)
     {
-        try{
-        $cat= new Document;
-        $cat->document_id=$r->document;
-        $cat->date=$r->date;
-        $cat->name=$r->name;
-        $cat->remark=$r->remark;
-
-        if($r->hasFile('image')){
-            $imageName = rand(111,999).time().'.'.$r->image->extension();  
-            $r->image->move(public_path('uploads/document'), $imageName);
-            $r->image=$imageName;
+        $cat = new Document;
+        $cat->date =$request->date;
+        $cat->name =$request->name;
+        if($request->has('image')){
+            $imageName= rand(111,999).time().'.'.$request->image->extension();
+            $request->image->move(public_path('uploads/document'), $imageName);
+            $cat->image=$imageName;
         }
-
-        $r->status=1;
-        if($r->save()){
-            return redirect('document')->with('success','Data saved');
-        }
+        $cat->remark = $request->remark;
+        $cat->save();
+        
+        return redirect()->route('document.index');
     }
-    catch(Exception $e){
-        //dd($e);
-        return back()->withInput();
-    }
-}
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Document $document)
     {
         //
     }
@@ -76,12 +64,12 @@ class DocumentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function edit(Document $document)
+    public function edit($id)
     {
-        $documents = Document::paginate(10);
+        $document= Document::findOrFail($id);
         return view('document.edit',compact('document'));
     }
 
@@ -89,44 +77,32 @@ class DocumentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, Document $document)
+    public function update(Request $request, $id)
     {
-        try{
-            $p= $document;
-            $p->document_id=$request->document;
-            $p->date=$request->date;
-            $p->name=$request->name;
-            $p->remark=$request->remark;
-
-            if($request->hasFile('image')){
-                $imageName = rand(111,999).time().'.'.$request->image->extension();  
-                $request->image->move(public_path('uploads/document'), $imageName);
-                $p->image=$imageName;
-            }
-
-            $p->status=1;
-            if($p->save()){
-                return redirect('document')->with('success','Data saved');
-            }
+        $document=Document::find($id);
+        $document->date = $request->date;
+        $document->name = $request->name;
+        if($request->has('image')){
+            $imageName= rand(111,999).time().'.'.$request->image->extension();
+            $request->image->move(public_path('uploads/document'), $imageName);
+            $document->image=$imageName;
         }
-        catch(Exception $e){
-            //dd($e);
-            return back()->withInput();
-        }
+        $document->remark = $request->remark;
+        $document->save();
+        return redirect()->route('document.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
     public function destroy(Document $document)
     {
-        $document->delete();
-        return redirect()->back();
+        //
     }
 }

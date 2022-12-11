@@ -11,6 +11,6 @@ class MasterAccount extends Model
     use HasFactory,softDeletes;
 
     public function subhead(){
-        return $this->hasMany(SubHead::class);
+        return $this->hasMany(SubHead::class,'master_head_id','id');
     }
 }

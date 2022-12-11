@@ -15,6 +15,6 @@ class SubHead extends Model
     }
 
     public function masterAccount(){
-        return $this->belongsTo(MasterAccount::class);
+        return $this->belongsTo(MasterAccount::class,'master_head_id','id');
     }
 }

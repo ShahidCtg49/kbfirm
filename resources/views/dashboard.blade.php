@@ -158,3 +158,9 @@
           </div>
 <!-- content-wrapper ends -->
 @endsection
+@push('scripts')
+
+    <!-- Custom js for this page -->
+    <script src="{{ asset('public/assets/js/dashboard.js') }}"></script>
+    <!-- End custom js for this page -->
+@endpush

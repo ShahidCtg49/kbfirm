@@ -11,6 +11,6 @@ class ChildTwo extends Model
     use HasFactory,softDeletes;
 
     public function childOne(){
-        return $this->belongsTo(ChildOne::class);
+        return $this->belongsTo(ChildOne::class,'child_one_id','id');
     }
 }

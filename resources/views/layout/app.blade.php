@@ -26,8 +26,8 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="{{ asset('public/assets/images/logo.svg') }}" alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ asset('public/assets/images/logo-mini.svg') }}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo" href="#"><img src="{{ asset('public/assets/images/logo.svg') }}" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="#"><img src="{{ asset('public/assets/images/logo-mini.svg') }}" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -45,59 +45,6 @@
           </div>
           <ul class="navbar-nav navbar-nav-right">
             
-            <li class="nav-item  dropdown d-none d-md-block">
-              <a class="nav-link dropdown-toggle" id="reportDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Reports </a>
-              <div class="dropdown-menu navbar-dropdown" aria-labelledby="reportDropdown">
-              <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-eye-outline mr-2"></i>Trial Balance</a>
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-eye-outline mr-2"></i>Account Head Report</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-eye-outline mr-2"></i>Recept and Payment Account</a>
-              </div>
-            </li>
-
-            <li class="nav-item  dropdown d-none d-md-block">
-              <a class="nav-link dropdown-toggle" id="projectDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Projects </a>
-              <div class="dropdown-menu navbar-dropdown" aria-labelledby="projectDropdown">
-                <a class="dropdown-item" href="{{ route('project.index')}}">
-                  <i class="mdi mdi-eye-outline mr-2"></i>View Project </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('project.create')}}">
-                  <i class="mdi mdi-pencil-outline mr-2"></i>New Project </a>
-              </div>
-            </li>
-
-            <li class="nav-item nav-language dropdown d-none d-md-block">
-              <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                <div class="nav-language-icon">
-                  <i class="flag-icon flag-icon-us" title="us" id="us"></i>
-                </div>
-                <div class="nav-language-text">
-                  <p class="mb-1 text-black">English</p>
-                </div>
-              </a>
-              <div class="dropdown-menu navbar-dropdown" aria-labelledby="languageDropdown">
-                <a class="dropdown-item" href="#">
-                  <div class="nav-language-icon mr-2">
-                    <i class="flag-icon flag-icon-bd" title="ae" id="ae"></i>
-                  </div>
-                  <div class="nav-language-text">
-                    <p class="mb-1 text-black">Bangla</p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  <div class="nav-language-icon mr-2">
-                    <i class="flag-icon flag-icon-us" title="GB" id="gb"></i>
-                  </div>
-                  <div class="nav-language-text">
-                    <p class="mb-1 text-black">English</p>
-                  </div>
-                </a>
-              </div>
-            </li>
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
@@ -144,94 +91,6 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                <i class="mdi mdi-email-outline"></i>
-                <span class="count-symbol bg-success"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-                <h6 class="p-3 mb-0 bg-primary text-white py-4">Messages</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="{{ asset('public/assets/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
-                    <p class="text-gray mb-0"> 1 Minutes ago </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="{{ asset('public/assets/images/faces/face2.jpg') }}" alt="image" class="profile-pic">
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
-                    <p class="text-gray mb-0"> 15 Minutes ago </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <img src="{{ asset('public/assets/images/faces/face3.jpg') }}" alt="image" class="profile-pic">
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
-                    <p class="text-gray mb-0"> 18 Minutes ago </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <h6 class="p-3 mb-0 text-center">4 new messages</h6>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="mdi mdi-bell-outline"></i>
-                <span class="count-symbol bg-danger"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <h6 class="p-3 mb-0 bg-primary text-white py-4">Notifications</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="mdi mdi-calendar"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
-                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="mdi mdi-settings"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
-                    <p class="text-gray ellipsis mb-0"> {{__('Update dashboard') }} </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="mdi mdi-link-variant"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
-                    <p class="text-gray ellipsis mb-0"> New admin wow! </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <h6 class="p-3 mb-0 text-center">See all notifications</h6>
-              </div>
-            </li>
           </ul>
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="mdi mdi-menu"></span>
@@ -246,7 +105,7 @@
             <li class="nav-item nav-category">Main</li>
             <!-- *** WORKING *** -->
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="#">
                 <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
                 <span class="menu-title">{{__('Dashboard') }}</span>
               </a>
@@ -259,10 +118,10 @@
               </a>
               <div class="collapse" id="ui-bas">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="">Create SMS</a>
-                  <li class="nav-item"><a class="nav-link" href="">SMS List</a>
-                  <li class="nav-item"><a class="nav-link" href="">Create Email</a>
-                  <li class="nav-item"><a class="nav-link" href="">Email List</a>
+                  <li class="nav-item"><a class="nav-link" href="#">Create SMS</a>
+                  <li class="nav-item"><a class="nav-link" href="#">SMS List</a>
+                  <li class="nav-item"><a class="nav-link" href="#">Create Email</a>
+                  <li class="nav-item"><a class="nav-link" href="#">Email List</a>
                 </li>
                 </ul>
               </div>
@@ -276,8 +135,26 @@
               </a>
               <div class="collapse" id="investor">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="{{ route('investor.index')}}">Investor Information List</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('investor.index')}}">Investor Information</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('feeCategory.index')}}">Fee Category</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('monthlyFees.index')}}">Monthly Fees</a>
                   <li class="nav-item"><a class="nav-link" href="{{ route('investorPayment.index')}}">Investor Payment</a>
+                </li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#invested" aria-expanded="false" aria-controls="ui-basic">
+                <span class="icon-bg"><i class="mdi mdi-human-male"></i></span>
+                <span class="menu-title">Project</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="invested">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"><a class="nav-link" href="{{ route('clientInfo.index')}}">Client Info</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('projectInfo.index')}}">Project Info</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('clientPayment.index')}}">Client Payment</a>
                 </li>
                 </ul>
               </div>
@@ -295,8 +172,41 @@
                   <li class="nav-item"><a class="nav-link" href="{{ route('subHead.index')}}">Sub head</a>
                   <li class="nav-item"><a class="nav-link" href="{{ route('childOne.index')}}">Child One head</a>
                   <li class="nav-item"><a class="nav-link" href="{{ route('childTwo.index')}}">Child Two head</a>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('navigationHeadView.index')}}">Navigation Head View</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('accountheadview')}}">Navigation Head View</a>
                 </li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#voucher" aria-expanded="false" aria-controls="ui-basic">
+                <span class="icon-bg"><i class="mdi mdi-chart-line"></i></span>
+                <span class="menu-title">Voucher</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="voucher">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"><a class="nav-link" href="{{ route('drvoucher.index') }}">Debit Vaucher</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('creditVoucher.index') }}">Credit Vaucher</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('journalVoucher.index') }}">Journal Vaucher</a>
+                </ul>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#Reports" aria-expanded="false" aria-controls="ui-basic">
+                <span class="icon-bg"><i class="mdi mdi-chart-line"></i></span>
+                <span class="menu-title">Reports</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="Reports">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"><a class="nav-link" href="{{ route('incomeStatement.index')}}">Income Statement</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('profitPortfolio.index')}}">Profit Portfolio</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('balanceSheet.index')}}">Balance Sheet</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('trialBalance.index')}}">Trial Balance</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('accountHeadReport.index')}}">Account Head Report</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('receptPaymentAccount.index')}}">Recept and Payment</a>
                 </ul>
               </div>
             </li>
@@ -309,8 +219,8 @@
               </a>
               <div class="collapse" id="document">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="">Document</a>
-                  <li class="nav-item"><a class="nav-link" href="">Regulation</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('document.index')}}">Document</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('regulation.index')}}">Regulation</a>
                 </li>
                 </ul>
               </div>
@@ -333,23 +243,10 @@
 
           </ul>
         </nav>
-           <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <!-- <div class="row" id="proBanner">
-              <div class="col-12">
-                <span class="d-flex align-items-center purchase-popup">
-                  <p>Like what you see? Check out our premium version for more.</p>
-                  <a href="https://github.com/BootstrapDash/ConnectPlusAdmin-Free-Bootstrap-Admin-Template" target="_blank" class="btn ml-auto download-button">Download Free Version</a>
-                  <a href="http://www.bootstrapdash.com/demo/connect-plus/jquery/template/" target="_blank" class="btn purchase-button">Upgrade To Pro</a>
-                  <i class="mdi mdi-close" id="bannerClose"></i>
-                </span>
-              </div>
-            </div> -->
 
 @yield('content')
-
-          <!-- partial:partials/_footer.html -->
           <footer class="footer">
             <div class="footer-inner-wraper">
               <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -357,13 +254,9 @@
               </div>
             </div>
           </footer>
-          <!-- partial -->
         </div>
-        <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('public/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
@@ -376,8 +269,6 @@
     <script src="{{ asset('public/assets/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('public/assets/js/misc.js') }}"></script>
     <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="{{ asset('public/assets/js/dashboard.js') }}"></script>
-    <!-- End custom js for this page -->
+    @stack('scripts')
   </body>
 </html>

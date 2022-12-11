@@ -16,7 +16,7 @@
               <select name="master_head_id" class="form-control" id="master_head_id">
                 <option value="">Select Master Head</option>
                 @forelse($master as $m)
-                  <option value="{{$m->d}}">{{$m->head_name}} - {{$m->head_code}}</option>
+                  <option value="{{$m->id}}">{{$m->head_name}} - {{$m->head_code}}</option>
                 @empty
                 <option value="">No head found</option>
                 @endforelse
