@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('master_accounts', function (Blueprint $table) {
             $table->id();
             $table->string('head_name');
-            $table->string('head_code');
+            $table->string('head_code')->unique();
             $table->string('opening_balance');
             $table->timestamps();
             $table->softDeletes();

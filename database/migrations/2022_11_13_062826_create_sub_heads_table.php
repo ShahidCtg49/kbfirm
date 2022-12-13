@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('master_head_id');
             $table->string('head_name');
-            $table->string('head_code');
+            $table->string('head_code')->unique();
             $table->string('opening_balance');
             $table->timestamps();
             $table->softDeletes();
@@ -44,7 +44,7 @@ return new class extends Migration
             [
                 'master_head_id' => '1',
                 'head_name' => 'Intangible Assets',
-                'head_code' => '121212',
+                'head_code' => '1300',
                 'opening_balance' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -52,7 +52,7 @@ return new class extends Migration
             [
                 'master_head_id' => '1',
                 'head_name' => 'Other Assets',
-                'head_code' => '1300',
+                'head_code' => '1400',
                 'opening_balance' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -116,7 +116,7 @@ return new class extends Migration
             [
                 'master_head_id' => '4',
                 'head_name' => 'Other Income',
-                'head_code' => '43000',
+                'head_code' => '4300',
                 'opening_balance' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -139,8 +139,16 @@ return new class extends Migration
             ],
             [
                 'master_head_id' => '5',
-                'head_name' => 'Revenue Expenses',
+                'head_name' => 'Operating Expense',
                 'head_code' => '5200',
+                'opening_balance' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'master_head_id' => '5',
+                'head_name' => 'Non Operating Expense',
+                'head_code' => '5300',
                 'opening_balance' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

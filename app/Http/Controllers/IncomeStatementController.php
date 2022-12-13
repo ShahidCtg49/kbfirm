@@ -16,8 +16,7 @@ class IncomeStatementController extends Controller
      */
     public function index()
     {
-        $incomeStatement= IncomeStatement::all();
-        return view('incomeStatement.index', compact('incomeStatement'));
+        return view('incomeStatement.index');
     }
 
     public function details(Request $r){
@@ -113,7 +112,7 @@ class IncomeStatementController extends Controller
                 }
             }
         }
-       
+
         if($month){
             $datas=$year."-".$month."-01";
             $datae=$year."-".$month."-31";
@@ -203,19 +202,101 @@ class IncomeStatementController extends Controller
                     $nonopinc=0;
                     $opexp=0;
                     $nonopexp=0;
+                    /* operating income */
                     if($opincome){
                         foreach($opincome as $opi){
                             $opinc+=$opi->cr;
                             $data.='<tr class="table-info">';
                             $data.='<td>'.$i++.'</td>';
                             $data.='<td> '.$opi->journal_title.' </td>';
-                            $data.='<td> '.$opi->cr.' </td>';
+                            $data.='<td class="text-right"> '.$opi->cr.' </td>';
+                            $data.='</tr>';
+                        }
+                    }
+                    $data.='<tr>
+                            <th> </th>
+                            <th class="text-right"> Gross Operating Income </th>
+                            <th class="text-right"> '.$opinc.' </th>
+                            </tr>';
+                    /* operating Expense */
+                    if($opexpense){
+                        foreach($opexpense as $opi){
+                            $opexp+=$opi->dr;
+                            $data.='<tr class="table-info">';
+                            $data.='<td>'.$i++.'</td>';
+                            $data.='<td> '.$opi->journal_title.' </td>';
+                            $data.='<td class="text-right"> '.$opi->dr.' </td>';
+                            $data.='</tr>';
+                        }
+                    }
+                    $data.='<tr>
+                            <th> </th>
+                            <th class="text-right"> Total Operating Expense </th>
+                            <th class="text-right"> '.$opexp.' </th>
+                            </tr>';
+                    $data.='<tr>
+                            <th> </th>
+                            <th class="text-right"> Net Operating Income </th>
+                            <th class="text-right"> '.($opinc - $opexp).' </th>
+                            </tr>';
+                    /* nonoperating income */
+                    if($nonopincome){
+                        foreach($nonopincome as $opi){
+                            $nonopinc+=$opi->cr;
+                            $data.='<tr class="table-info">';
+                            $data.='<td>'.$i++.'</td>';
+                            $data.='<td> '.$opi->journal_title.' </td>';
+                            $data.='<td class="text-right"> '.$opi->cr.' </td>';
                             $data.='</tr>';
                             
                         }
                     }
+                    $data.='<tr>
+                            <th> </th>
+                            <th class="text-right"> Gross Nonoperating Income Total </th>
+                            <th class="text-right"> '.$nonopinc.' </th>
+                            </tr>';
+                    
+                    
+                    /* nonoperating Expense */
+                    if($nonopexpense){
+                        foreach($nonopexpense as $opi){
+                            $nonopexp+=$opi->dr;
+                            $data.='<tr class="table-info">';
+                            $data.='<td>'.$i++.'</td>';
+                            $data.='<td> '.$opi->journal_title.' </td>';
+                            $data.='<td class="text-right"> '.$opi->dr.' </td>';
+                            $data.='</tr>';
+                            
+                        }
+                    }
+                    $data.='<tr>
+                            <th> </th>
+                            <th class="text-right"> Total Nonoperating Expense </th>
+                            <th class="text-right"> '.$nonopexp.' </th>
+                            </tr>';
+                    $data.='<tr>
+                            <th> </th>
+                            <th class="text-right"> Net Nonoperating Income </th>
+                            <th class="text-right"> '.($nonopinc - $nonopexp).' </th>
+                            </tr>';
+                    $data.='<tr>
+                            <th> </th>
+                            <th class="text-right"> Net Income Before Tax</th>
+                            <th class="text-right"> '.(($nonopinc + $opinc)  - ($opexp + $nonopexp)).' </th>
+                            </tr>';
+                    $data.='<tr>
+                            <th> </th>
+                            <th class="text-right">Tax</th>
+                            <th class="text-right"> 0 </th>
+                            </tr>';
+                    $data.='<tr>
+                            <th> </th>
+                            <th class="text-right"> Net Income</th>
+                            <th class="text-right"> '.(($nonopinc + $opinc)  - ($opexp + $nonopexp)).' </th>
+                            </tr>';
 
-            $data='</tbody>
+            $data.='</tbody>
                 </table>
             </div>
             </div>

@@ -19,28 +19,12 @@ return new class extends Migration
             $table->id();
             $table->string('child_one_id');
             $table->string('head_name');
-            $table->string('head_code');
+            $table->string('head_code')->unique();
             $table->string('opening_balance');
             $table->timestamps();
             $table->softDeletes();
         });
         DB::table('child_twos')->insert([
-            [
-                'child_one_id' => '6',
-                'head_name' => 'Staff Salary',
-                'head_code' => '52001001',
-                'opening_balance' => '0',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'child_one_id' => '6',
-                'head_name' => 'Night Guard Salary',
-                'head_code' => '52001002',
-                'opening_balance' => '0',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
             [
                 'child_one_id' => '1',
                 'head_name' => 'Petty Cash',
@@ -58,7 +42,23 @@ return new class extends Migration
                 'updated_at' => Carbon::now()
             ],
             [
-                'child_one_id' => '9',
+                'child_one_id' => '11',
+                'head_name' => 'Staff Salary',
+                'head_code' => '52001001',
+                'opening_balance' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'child_one_id' => '11',
+                'head_name' => 'Night Guard Salary',
+                'head_code' => '52001002',
+                'opening_balance' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'child_one_id' => '14',
                 'head_name' => 'Office Rent',
                 'head_code' => '52004001',
                 'opening_balance' => '0',

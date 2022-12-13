@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('sub_head_id');
             $table->string('head_name');
-            $table->string('head_code');
+            $table->string('head_code')->unique();
             $table->string('opening_balance');
             $table->timestamps();
             $table->softDeletes();
@@ -69,6 +69,37 @@ return new class extends Migration
                 'sub_head_id' => '10',
                 'head_name' => 'Income from Project',
                 'head_code' => '41003',
+                'opening_balance' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'sub_head_id' => '11',
+                'head_name' => 'Bank Interest',
+                'head_code' => '42001',
+                'opening_balance' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'sub_head_id' => '11',
+                'head_name' => 'Profit from Capital Market Investment',
+                'head_code' => '42002',
+                'opening_balance' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'sub_head_id' => '14',
+                'head_name' => 'Land Purchase',
+                'head_code' => '51001',
+                'opening_balance' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],[
+                'sub_head_id' => '14',
+                'head_name' => 'Project Investment',
+                'head_code' => '51002',
                 'opening_balance' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -132,7 +163,15 @@ return new class extends Migration
             [
                 'sub_head_id' => '15',
                 'head_name' => 'Clean Expense',
-                'head_code' => '52007',
+                'head_code' => '52008',
+                'opening_balance' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'sub_head_id' => '16',
+                'head_name' => 'Income Tax',
+                'head_code' => '53001',
                 'opening_balance' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
