@@ -203,6 +203,7 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"><a class="nav-link" href="{{ route('incomeStatement.index')}}">Income Statement</a>
                   <li class="nav-item"><a class="nav-link" href="{{ route('profitPortfolio.index')}}">Profit Portfolio</a>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('profitStatement.index')}}">Profit Statement</a>
                   <li class="nav-item"><a class="nav-link" href="{{ route('balanceSheet.index')}}">Balance Sheet</a>
                   <li class="nav-item"><a class="nav-link" href="{{ route('trialBalance.index')}}">Trial Balance</a>
                   <li class="nav-item"><a class="nav-link" href="{{ route('accountHeadReport.index')}}">Account Head Report</a>

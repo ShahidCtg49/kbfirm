@@ -6,7 +6,7 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">Create Investor Payment</h4>
-      <form class="forms-sample" method="post" action="{{ route ('investorPayment.store') }}" enctype="multipart/form-data">
+      <form class="forms-sample" method="post" action="{{ route('investorPayment.store') }}" enctype="multipart/form-data">
       @csrf 
         <div class="row">
           <div class="col-sm-6">

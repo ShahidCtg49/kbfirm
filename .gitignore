@@ -17,3 +17,9 @@ yarn-error.log
 /.idea
 /.vscode
 /.theme back-up
+/theme back-up
+*.html
+*.eot
+*.woff
+*.woff2
+*.ttf

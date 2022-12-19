@@ -28,7 +28,6 @@
                        
                             <td>
                             <a type="button" class="btn btn-sm btn-success" href="{{ route('investorPayment.show',$cat->id)}}" title="View"><i class="mdi mdi-eye"></i></a>
-                                <a type="button" class="btn btn-sm btn-primary" href="{{ route('investorPayment.edit',$cat->id)}}" title="Edit"><i class="mdi mdi-tooltip-edit"></i></a>
                             </td>
                         </tr>
                         @empty

@@ -5,18 +5,15 @@
   <div class="card">
   <div class="card-body">
     <h4 class="card-title">Update Client Profile</h4>
-    <p class="card-description">Update Client Profile</p>
     <form class="forms-sample" method="post" action="{{ route ('clientInfo.update',$clientInfo->id) }}" enctype="multipart/form-data">
   @csrf 
   @method('patch')
   <div class="container-fluid">
             <div class="edit-profile">
-              <div class="row">
+            <div class="row">
+              <form class="card">
                 <div class="col-lg-4">
                   <div class="card">
-                    <div class="card-header">
-                      <h4 class="card-title mb-0">Client Profile</h4>
-                    </div>
                     <div class="card-body">
                       <div>
                       <div class="form-group">
@@ -36,20 +33,23 @@
                   </div>
                 </div>
                 <div class="col-lg-8">
-                  <form class="card">
-                    <div class="card-header">
-                      <div class="card-options"><a class="card-options-collapse" href="#" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-toggle="card-remove"><i class="fe fe-x"></i></a></div>
-                    </div>
                     <div class="card-body">
                       <div class="row">
+
+                      <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                           <label class="form-label">Email</label>
                           <input class="form-control" value="{{$clientInfo->email}}" name="email" id="email">
                         </div>
+                      </div>
+
+                      <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                           <label class="form-label">Contact</label>
                           <input class="form-control" value="{{$clientInfo->contact_no}}" name="contact_no" id="contact_no">
                         </div>
+                      </div>
+
                         <div class="col-sm-6 col-md-6">
                           <div class="form-group">
                             <label class="form-label">Father Name</label>
@@ -57,11 +57,12 @@
                           </div>
                           <div class="form-group">
                             <label class="form-label">National Id</label>
-                            <input class="form-control" value="{{$clientInfo->national_id}}" name="national_id" id="national_id" type="number">
+                            <input class="form-control" value="{{$clientInfo->national_id}}" name="national_id" id="national_id" type="text">
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
                     <button class="btn btn-primary" type="submit">Submit</button>
                   </form>
                 </div>

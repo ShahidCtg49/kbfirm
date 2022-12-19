@@ -135,10 +135,11 @@ class InvestorPaymentController extends Controller
      * @param  \App\Models\InvestorPayment  $investorPayment
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(InvestorPayment $investorPayment)
     {
-        $investorPayment = InvestorPayment::findOrFail($id);
-        return view('investorPayment.edit',compact('investorPayment'));
+        $investorPayment = InvestorPayment::get();
+        $investor= InvestorInformation::get();
+        return view('investorPayment.edit',compact('investorPayment','investor'));
     }
 
     /**

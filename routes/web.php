@@ -23,6 +23,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\IncomeStatementController;
 use App\Http\Controllers\JournalVoucherController;
 use App\Http\Controllers\ProfitPortfolioController;
+use App\Http\Controllers\ProfitStatementController;
 use App\Http\Controllers\ProjectInfoController;
 use App\Http\Controllers\ReceptPaymentAccountController;
 use App\Http\Controllers\RegulationController;
@@ -97,7 +98,11 @@ Route::get('incomeStatement_details',[IncomeStatementController::class,'details'
 
 Route::resource('clientInfo',ClientInfoController::class);
 Route::resource('projectInfo',ProjectInfoController::class);
-Route::resource('profitPortfolio',ProfitPortfolioController::class);
+
+Route::get('profitPortfolio',[ProfitPortfolioController::class,'index'])->name('profitPortfolio.index');
+Route::get('profitPortfolio_details',[ProfitPortfolioController::class,'details'])->name('profitPortfolio.details');
+
+Route::resource('profitStatement',ProfitStatementController::class);
 Route::resource('balanceSheet',BalanceSheetController::class);
 Route::resource('clientPayment',ClientPaymentController::class);
 Route::resource('receptPaymentAccount',ReceptPaymentAccountController::class);
