@@ -33,6 +33,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             // default
+            $table->boolean('type')->default(1);
             $table->boolean('status')->default(1);
             $table->unsignedBigInteger('created_by')->index()->default(1);
             $table->unsignedBigInteger('updated_by')->index()->nullable();

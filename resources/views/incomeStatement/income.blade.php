@@ -13,13 +13,7 @@
                   <th> Amount </th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="table-info">
-                  <td>1</td>
-                  <td> Herman Beck </td>
-                  <td> $ 77.99 </td>
-                </tr>
-              </tbody>
+              
             </table>
           </div>
         </div>

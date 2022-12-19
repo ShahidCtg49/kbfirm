@@ -16,6 +16,7 @@
                         <th>Contact</th>
                         <th>NOS</th>
                         <th>Joining</th>
+                        <th>Type</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -29,6 +30,13 @@
                             <td>{{$cat->contact_no}} <br> {{$cat->email}}</td>
                             <td>{{$cat->number_shares}}</td>
                             <td>{{$cat->joining_date}}</td>
+                            <td>
+                                @if($cat->type)
+                                    <sapn class="badge badge-success">Investor</sapn>    
+                                @else
+                                    <sapn class="badge badge-info">Director</sapn>
+                                @endif    
+                            </td>
                             <td>
                                 @if($cat->status)
                                     <sapn class="badge badge-success">Active</sapn>    

@@ -74,6 +74,14 @@
                           </div>
                         </div>
 
+                        <div class="col-sm-6 col-md-3">
+                          <select name="type" class="form-control" id="type">
+                              <option value="">Select Type</option>
+                                <option value="1">Investor</option>
+                              <option value="0">Director</option>
+                            </select>
+                        </div>
+
                         <div class="col-sm-6 col-md-4">
                           <div class="form-group">
                             <label class="form-label">Email address</label>

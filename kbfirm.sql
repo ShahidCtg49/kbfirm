@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2022 at 08:49 AM
+-- Generation Time: Dec 14, 2022 at 08:22 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,19 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `kbfirm`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `account_head_reports`
---
-
-CREATE TABLE `account_head_reports` (
-  `account_head` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -60,18 +47,6 @@ INSERT INTO `account_head_views` (`id`, `master_head`, `sub_head`, `child_one`, 
 (3, '5', 'Revenue Expenses', 'Salary', 'Staff Salary', '2022-11-22 20:53:26', NULL),
 (4, '5', 'Revenue Expenses', 'Salary', 'Night Guard Salary', '2022-11-22 20:53:26', NULL),
 (5, '5', 'Revenue Expenses', 'Rent Expense', 'Office Rent', '2022-11-22 20:53:26', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `balance_sheets`
---
-
-CREATE TABLE `balance_sheets` (
-  `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -113,7 +88,8 @@ INSERT INTO `child_ones` (`id`, `sub_head_id`, `head_name`, `head_code`, `openin
 (16, '15', 'Stationary Expense', '52006', '0', '2022-12-13 00:50:15', '2022-12-13 00:50:15', NULL),
 (17, '15', 'Repair & Maintenance', '52007', '0', '2022-12-13 00:50:15', '2022-12-13 00:50:15', NULL),
 (18, '15', 'Clean Expense', '52008', '0', '2022-12-13 00:50:15', '2022-12-13 00:50:15', NULL),
-(19, '16', 'Income Tax', '53001', '0', '2022-12-13 01:41:01', '2022-12-13 01:41:01', NULL);
+(19, '16', 'Income Tax', '53001', '0', '2022-12-13 01:41:01', '2022-12-13 01:41:01', NULL),
+(20, '16', 'Lawsuit Settlement Expenses', '53002', '0', '2022-12-14 04:27:56', '2022-12-14 04:27:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -424,7 +400,9 @@ INSERT INTO `general_ledgers` (`id`, `journal_title`, `dr`, `cr`, `rec_date`, `j
 (27, '11002-Bank', '12000', '0', '2022-12-31', '10000014', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, 14, 27, 1, NULL, '2022-12-13 01:15:39', '2022-12-13 01:15:39', NULL),
 (28, '42002-Profit From Capital Market Investment', '0', '12000', '2022-12-31', '10000014', NULL, NULL, '8', NULL, NULL, NULL, NULL, NULL, 14, 28, 1, NULL, '2022-12-13 01:15:39', '2022-12-13 01:15:39', NULL),
 (29, '53001-Income Tax', '2500', '0', '2022-12-31', '10000015', NULL, NULL, '19', NULL, NULL, NULL, NULL, NULL, 15, 29, 1, NULL, '2022-12-13 01:47:31', '2022-12-13 01:47:31', NULL),
-(30, '11002-Bank', '0', '2500', '2022-12-31', '10000015', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, 15, 30, 1, NULL, '2022-12-13 01:47:31', '2022-12-13 01:47:31', NULL);
+(30, '11002-Bank', '0', '2500', '2022-12-31', '10000015', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, 15, 30, 1, NULL, '2022-12-13 01:47:31', '2022-12-13 01:47:31', NULL),
+(31, '53002-Lawsuit Settlement Expenses', '2000', '0', '2022-12-14', '10000016', NULL, NULL, '20', NULL, NULL, NULL, NULL, NULL, 16, 31, 1, NULL, '2022-12-14 04:29:39', '2022-12-14 04:29:39', NULL),
+(32, '11001001-Petty Cash', '0', '2000', '2022-12-14', '10000016', NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, 16, 32, 1, NULL, '2022-12-14 04:29:39', '2022-12-14 04:29:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -458,20 +436,8 @@ INSERT INTO `general_vouchers` (`id`, `voucher_no`, `created_at`, `updated_at`) 
 (12, '10000012', '2022-12-13 01:13:18', '2022-12-13 01:13:18'),
 (13, '10000013', '2022-12-13 01:14:43', '2022-12-13 01:14:43'),
 (14, '10000014', '2022-12-13 01:15:39', '2022-12-13 01:15:39'),
-(15, '10000015', '2022-12-13 01:47:31', '2022-12-13 01:47:31');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `income_statements`
---
-
-CREATE TABLE `income_statements` (
-  `month` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(15, '10000015', '2022-12-13 01:47:31', '2022-12-13 01:47:31'),
+(16, '10000016', '2022-12-14 04:29:39', '2022-12-14 04:29:39');
 
 -- --------------------------------------------------------
 
@@ -495,6 +461,7 @@ CREATE TABLE `investor_information` (
   `joining_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `due` decimal(10,2) NOT NULL DEFAULT 0.00,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT 1,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_by` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
   `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
@@ -507,20 +474,20 @@ CREATE TABLE `investor_information` (
 -- Dumping data for table `investor_information`
 --
 
-INSERT INTO `investor_information` (`id`, `investor_id`, `image`, `name`, `father_name`, `contact_no`, `email`, `national_id`, `address`, `number_shares`, `nominee_name`, `relationship`, `joining_date`, `due`, `user_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '1', '2351669172427.jpg', 'Shahidul Islam', 'Abdul Mazid', '01887621949', 'shahiduli555@gmail.com', '28058216', NULL, '2', 'Md. Tohid', 'Son', '2022-11-23', '-20000.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-23 21:59:55', NULL),
-(2, '2', '2171669180059.jpg', 'Ashab Uddin', 'Abdul Samad', '01777621950', 'ashab50@gmail.com', '28058324', NULL, '5', 'Md. Rabib', 'Son', '2022-11-23', '500.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-23 20:59:51', NULL),
-(3, '3', '9501669180092.jpg', 'Md. Rabib', 'Jaker Hossain', '01777621222', 'rabib22@gmail.com', '20585643', NULL, '1', 'Ashab uddin', 'Son', '2022-11-23', '0.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-22 23:08:12', NULL),
-(4, '4', '6681669180106.jpg', 'Md Tohidul Islam', 'Hossain Akbor', '01777621225', 'tohid25@gmail.com', '28058565', NULL, '1', 'Hossain Akbor', 'father', '2022-11-23', '10000.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-23 00:38:31', NULL),
-(5, '5', '8321669180123.jpg', 'Biplop Uddin', 'Akter Hossion', '01777621263', 'biplop63@gmail.com', '80585663', NULL, '1', 'Akter Hossion', 'father', '2022-11-23', '0.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-22 23:08:43', NULL),
-(6, '6', '3101669180144.jpg', 'Sajedul Hoque', 'Abdul Kader', '01777621242', 'sajedul42@gmail.com', '20585647', NULL, '3', 'Abdul Kader', 'father', '2022-11-23', '0.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-23 21:00:03', NULL),
-(7, '7', '2131669180159.jpg', 'Jalal Uddin', 'Md. Shahajan', '01777621532', 'jalal32@gmail.com', '280856532', NULL, '1', 'Md. Shahajan', 'father', '2022-11-23', '0.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-22 23:09:19', NULL),
-(8, '8', '8251669180172.jpg', 'Md. Jahid', 'Samsul Alom', '01777621578', 'jahid78@gmail.com', '280586578', NULL, '1', 'Samsul Alom', 'father', '2022-11-23', '0.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-22 23:09:32', NULL),
-(9, '9', '3841669180187.jpg', 'Saiful Islam', 'Jalal Uddin', '01777621566', 'saiful66@gmail.com', '280586566', NULL, '1', 'Jalal Uddin', 'father', '2022-11-23', '0.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-22 23:09:47', NULL),
-(10, '10', '7331669518520.jpg', 'Md. Rahat', 'Saiful Islam', '01777621537', 'rahat37@gmail.com', '280856537', NULL, '1', 'Saiful Islam', 'father', '2022-11-24', '0.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-26 21:08:40', NULL),
-(11, '11', '9511669518540.jpg', 'Ariful Islam', 'Md. Rahat', '01777621519', 'arif19@gmail.com', '280586519', NULL, '1', 'Md. Rahat', 'father', '2022-11-24', '6500.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-26 21:09:00', NULL),
-(12, '12', '2831669518558.jpg', 'Md. Nasim', 'Ariful Islam', '01777621571', 'nasim71@gmail.com', '2855856571', NULL, '1', 'Ariful Islam', 'father', '2022-11-24', '0.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-26 21:09:18', NULL),
-(13, '13', '5491669518573.jpg', 'Haronur Rashid', 'Md. Nasim', '01777621589', 'harun89@gmail.com', '2805456589', NULL, '1', 'Md. Nasim', 'father', '2022-11-24', '0.00', NULL, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-26 21:09:33', NULL);
+INSERT INTO `investor_information` (`id`, `investor_id`, `image`, `name`, `father_name`, `contact_no`, `email`, `national_id`, `address`, `number_shares`, `nominee_name`, `relationship`, `joining_date`, `due`, `user_id`, `type`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '1', '2351669172427.jpg', 'Shahidul Islam', 'Abdul Mazid', '01887621949', 'shahiduli555@gmail.com', '28058216', NULL, '2', 'Md. Tohid', 'Son', '2022-11-23', '-20000.00', NULL, 0, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-23 21:59:55', NULL),
+(2, '2', '2171669180059.jpg', 'Ashab Uddin', 'Abdul Samad', '01777621950', 'ashab50@gmail.com', '28058324', NULL, '5', 'Md. Rabib', 'Son', '2022-11-23', '500.00', NULL, 0, 1, 1, NULL, '2022-11-22 20:53:23', '2022-12-14 07:17:59', NULL),
+(3, '3', '9501669180092.jpg', 'Md. Rabib', 'Jaker Hossain', '01777621222', 'rabib22@gmail.com', '20585643', NULL, '1', 'Ashab uddin', 'Son', '2022-11-23', '0.00', NULL, 1, 1, 1, NULL, '2022-11-22 20:53:23', '2022-12-14 07:19:27', NULL),
+(4, '4', '6681669180106.jpg', 'Md Tohidul Islam', 'Hossain Akbor', '01777621225', 'tohid25@gmail.com', '28058565', NULL, '1', 'Hossain Akbor', 'father', '2022-11-23', '10000.00', NULL, 1, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-23 00:38:31', NULL),
+(5, '5', '8321669180123.jpg', 'Biplop Uddin', 'Akter Hossion', '01777621263', 'biplop63@gmail.com', '80585663', NULL, '1', 'Akter Hossion', 'father', '2022-11-23', '0.00', NULL, 1, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-22 23:08:43', NULL),
+(6, '6', '3101669180144.jpg', 'Sajedul Hoque', 'Abdul Kader', '01777621242', 'sajedul42@gmail.com', '20585647', NULL, '3', 'Abdul Kader', 'father', '2022-11-23', '0.00', NULL, 0, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-23 21:00:03', NULL),
+(7, '7', '2131669180159.jpg', 'Jalal Uddin', 'Md. Shahajan', '01777621532', 'jalal32@gmail.com', '280856532', NULL, '1', 'Md. Shahajan', 'father', '2022-11-23', '0.00', NULL, 1, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-22 23:09:19', NULL),
+(8, '8', '8251669180172.jpg', 'Md. Jahid', 'Samsul Alom', '01777621578', 'jahid78@gmail.com', '280586578', NULL, '1', 'Samsul Alom', 'father', '2022-11-23', '0.00', NULL, 1, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-22 23:09:32', NULL),
+(9, '9', '3841669180187.jpg', 'Saiful Islam', 'Jalal Uddin', '01777621566', 'saiful66@gmail.com', '280586566', NULL, '1', 'Jalal Uddin', 'father', '2022-11-23', '0.00', NULL, 1, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-22 23:09:47', NULL),
+(10, '10', '7331669518520.jpg', 'Md. Rahat', 'Saiful Islam', '01777621537', 'rahat37@gmail.com', '280856537', NULL, '1', 'Saiful Islam', 'father', '2022-11-24', '0.00', NULL, 1, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-26 21:08:40', NULL),
+(11, '11', '9511669518540.jpg', 'Ariful Islam', 'Md. Rahat', '01777621519', 'arif19@gmail.com', '280586519', NULL, '1', 'Md. Rahat', 'father', '2022-11-24', '6500.00', NULL, 1, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-26 21:09:00', NULL),
+(12, '12', '2831669518558.jpg', 'Md. Nasim', 'Ariful Islam', '01777621571', 'nasim71@gmail.com', '2855856571', NULL, '1', 'Ariful Islam', 'father', '2022-11-24', '0.00', NULL, 1, 1, 1, NULL, '2022-11-22 20:53:23', '2022-11-26 21:09:18', NULL),
+(13, '13', '5491669518573.jpg', 'Haronur Rashid', 'Md. Nasim', '01777621589', 'harun89@gmail.com', '2805456589', NULL, '5', 'Md. Nasim', 'father', '2022-11-24', '0.00', NULL, 0, 1, 1, NULL, '2022-11-22 20:53:23', '2022-12-14 06:50:47', NULL);
 
 -- --------------------------------------------------------
 
@@ -603,7 +570,8 @@ INSERT INTO `journal_vouchers` (`id`, `voucher_no`, `current_date`, `pay_name`, 
 (12, '10000012', '2022-12-31', 'Sajedul Sakib', 'Income from Project', '50000.00', '50000.00', NULL, NULL, NULL, NULL, 1, NULL, '2022-12-13 01:13:18', '2022-12-13 01:13:18', NULL),
 (13, '10000013', '2022-12-31', 'IBBL', 'Income from Bank Interest', '8000.00', '8000.00', NULL, NULL, NULL, NULL, 1, NULL, '2022-12-13 01:14:43', '2022-12-13 01:14:43', NULL),
 (14, '10000014', '2022-12-31', 'grameenphone', 'Profit From Capital Market Investment', '12000.00', '12000.00', NULL, NULL, NULL, NULL, 1, NULL, '2022-12-13 01:15:39', '2022-12-13 01:15:39', NULL),
-(15, '10000015', '2022-12-31', 'NBR', 'for Income Tax', '2500.00', '2500.00', NULL, NULL, NULL, NULL, 1, NULL, '2022-12-13 01:47:31', '2022-12-13 01:47:31', NULL);
+(15, '10000015', '2022-12-31', 'NBR', 'for Income Tax', '2500.00', '2500.00', NULL, NULL, NULL, NULL, 1, NULL, '2022-12-13 01:47:31', '2022-12-13 01:47:31', NULL),
+(16, '10000016', '2022-12-14', 'Adv.Sakib', 'Lawsuit Settlement Expenses', '2000.00', '2000.00', NULL, NULL, NULL, NULL, 1, NULL, '2022-12-14 04:29:39', '2022-12-14 04:29:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -661,7 +629,9 @@ INSERT INTO `journal_voucher_bkdns` (`id`, `journal_voucher_id`, `particulars`, 
 (27, '14', '', '11002-Bank', 'child_ones', '2', '12000.00', '0.00', 2, NULL, '2022-12-13 01:15:39', '2022-12-13 01:15:39', NULL),
 (28, '14', '', '42002-Profit From Capital Market Investment', 'child_ones', '8', '0.00', '12000.00', 2, NULL, '2022-12-13 01:15:39', '2022-12-13 01:15:39', NULL),
 (29, '15', '', '53001-Income Tax', 'child_ones', '19', '2500.00', '0.00', 2, NULL, '2022-12-13 01:47:31', '2022-12-13 01:47:31', NULL),
-(30, '15', '', '11002-Bank', 'child_ones', '2', '0.00', '2500.00', 2, NULL, '2022-12-13 01:47:31', '2022-12-13 01:47:31', NULL);
+(30, '15', '', '11002-Bank', 'child_ones', '2', '0.00', '2500.00', 2, NULL, '2022-12-13 01:47:31', '2022-12-13 01:47:31', NULL),
+(31, '16', 'Paid On Cash', '53002-Lawsuit Settlement Expenses', 'child_ones', '20', '2000.00', '0.00', 2, NULL, '2022-12-14 04:29:39', '2022-12-14 04:29:39', NULL),
+(32, '16', 'Paid On Cash', '11001001-Petty Cash', 'child_twos', '1', '0.00', '2000.00', 2, NULL, '2022-12-14 04:29:39', '2022-12-14 04:29:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -803,18 +773,6 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profit_portfolios`
---
-
-CREATE TABLE `profit_portfolios` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `project_infos`
 --
 
@@ -845,19 +803,6 @@ INSERT INTO `project_infos` (`id`, `client_id`, `project_name`, `description`, `
 (1, 1, 'land invest', 'Investing on \"Papapy Cultivation on  Edge of Newly Drought Pond\"', '50000', '3 Month from Day of Cultivation', '2022-11-28', '2022-12-28', '4000', NULL, NULL, 1, 1, NULL, '2022-11-28 01:14:07', '2022-11-28 02:03:23'),
 (2, 3, 'land invest', 'odjklfjsdla', '4000', '6 Month from Day of Cultivation', '2022-11-28', '2022-12-29', '7000', NULL, NULL, 1, 1, NULL, '2022-11-28 01:26:38', '2022-11-28 01:26:38'),
 (3, 1, 'land invest', 'fggf', '50000', '3 Month from Day of Cultivation', '2022-12-03', '2023-10-03', '25000', NULL, NULL, 1, 1, NULL, '2022-12-03 05:13:57', '2022-12-03 05:13:57');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `recept_payment_accounts`
---
-
-CREATE TABLE `recept_payment_accounts` (
-  `month` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -937,23 +882,6 @@ INSERT INTO `sub_heads` (`id`, `master_head_id`, `head_name`, `head_code`, `open
 (14, '5', 'Capital Expenses', '5100', '0', '2022-12-13 00:50:15', '2022-12-13 00:50:15', NULL),
 (15, '5', 'Operating Expense', '5200', '0', '2022-12-13 00:50:15', '2022-12-13 00:50:15', NULL),
 (16, '5', 'Non Operating Expense', '5300', '0', '2022-12-13 00:50:15', '2022-12-13 00:50:15', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `trial_balances`
---
-
-CREATE TABLE `trial_balances` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `dr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_by` bigint(20) UNSIGNED NOT NULL DEFAULT 2,
-  `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1164,12 +1092,6 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `profit_portfolios`
---
-ALTER TABLE `profit_portfolios`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `project_infos`
 --
 ALTER TABLE `project_infos`
@@ -1199,14 +1121,6 @@ ALTER TABLE `sub_heads`
   ADD UNIQUE KEY `sub_heads_head_code_unique` (`head_code`);
 
 --
--- Indexes for table `trial_balances`
---
-ALTER TABLE `trial_balances`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `trial_balances_created_by_index` (`created_by`),
-  ADD KEY `trial_balances_updated_by_index` (`updated_by`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1229,7 +1143,7 @@ ALTER TABLE `account_head_views`
 -- AUTO_INCREMENT for table `child_ones`
 --
 ALTER TABLE `child_ones`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `child_twos`
@@ -1295,13 +1209,13 @@ ALTER TABLE `fee_categories`
 -- AUTO_INCREMENT for table `general_ledgers`
 --
 ALTER TABLE `general_ledgers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `general_vouchers`
 --
 ALTER TABLE `general_vouchers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `investor_information`
@@ -1319,13 +1233,13 @@ ALTER TABLE `investor_payments`
 -- AUTO_INCREMENT for table `journal_vouchers`
 --
 ALTER TABLE `journal_vouchers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `journal_voucher_bkdns`
 --
 ALTER TABLE `journal_voucher_bkdns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `master_accounts`
@@ -1352,12 +1266,6 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `profit_portfolios`
---
-ALTER TABLE `profit_portfolios`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `project_infos`
 --
 ALTER TABLE `project_infos`
@@ -1380,12 +1288,6 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `sub_heads`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `trial_balances`
---
-ALTER TABLE `trial_balances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

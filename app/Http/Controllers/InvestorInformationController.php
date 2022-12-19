@@ -60,6 +60,7 @@ class InvestorInformationController extends Controller
             $cat->national_id = $request->national_id;
             $cat->address = $request->address;
             $cat->number_shares = $request->number_shares;
+            $cat->type = $request->type;
             $cat->nominee_name = $request->nominee_name;
             $cat->relationship = $request->relationship;
             $cat->joining_date = $request->joining_date;
@@ -117,6 +118,7 @@ class InvestorInformationController extends Controller
         $investorInformation->national_id = $request->national_id;
         $investorInformation->address = $request->address;
         $investorInformation->number_shares = $request->number_shares;
+        $investorInformation->type = $request->type;
         $investorInformation->nominee_name = $request->nominee_name;
         $investorInformation->relationship = $request->relationship;
         $investorInformation->joining_date = $request->joining_date;

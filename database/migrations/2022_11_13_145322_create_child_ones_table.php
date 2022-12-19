@@ -175,6 +175,14 @@ return new class extends Migration
                 'opening_balance' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'sub_head_id' => '16',
+                'head_name' => 'Lawsuit Settlement Expenses',
+                'head_code' => '53002',
+                'opening_balance' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

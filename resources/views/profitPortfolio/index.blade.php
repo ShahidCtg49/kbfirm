@@ -13,7 +13,6 @@
                       </div>
                 </table>
                 <br>
-
                 <button class="btn btn-primary" type="submit">Get Report</button>
         </div>
     </div>

@@ -20,6 +20,7 @@
                         <th>Nominee Name</th>
                         <th>Relationship</th>
                         <th>Joining</th>
+                        <th>Type</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -40,6 +41,13 @@
                             <td>{{$investor_information->nominee_name}}</td>
                             <td>{{$investor_information->relationship}}</td>
                             <td>{{$investor_information->joining_date}}</td> 
+                            <td>
+                                @if($investor_information->type)
+                                    <sapn class="badge badge-success">Investor</sapn>    
+                                @else
+                                    <sapn class="badge badge-info">Director</sapn>
+                                @endif    
+                            </td>
                             <td>
                                 @if($investor_information->status)
                                     <sapn class="badge badge-success">Active</sapn>    

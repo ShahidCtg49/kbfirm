@@ -40,6 +40,7 @@ class IncomeStatementController extends Controller
         $expenseheadnop=array();
         $expenseheadnopone=array();
         $expenseheadnoptwo=array();
+        $tax_data=array();
 
         foreach($acc_head as $ah){
             if($ah->head_code=="4000"){
@@ -101,7 +102,10 @@ class IncomeStatementController extends Controller
                                             $expenseheadnoptwo[]=$childTwo->id;
                                         }
                                     }else{
-                                        $expenseheadnopone[]=$childOne->id;
+                                        if($childOne->head_code!="53001")
+                                            $expenseheadnopone[]=$childOne->id;
+                                        else
+                                            $tax_data[]=$childOne->id;
                                     }
                                 }
                             }else{
@@ -155,20 +159,20 @@ class IncomeStatementController extends Controller
 
             /* operating expense */
             $opexpense=GeneralLedger::whereBetween('rec_date',[$datas,$datae])
-            ->where(function($query) use ($expenseheadop,$expenseheadopone,$expenseheadnoptwo){
+            ->where(function($query) use ($expenseheadop,$expenseheadopone,$expenseheadoptwo){
                 $query->orWhere(function($query) use ($expenseheadop){
                      $query->whereIn('sub_head_id',$expenseheadop);
                 });
                 $query->orWhere(function($query) use ($expenseheadopone){
                      $query->whereIn('child_one_id',$expenseheadopone);
                 });
-                $query->orWhere(function($query) use ($expenseheadnoptwo){
-                     $query->whereIn('child_two_id',$expenseheadnoptwo);
+                $query->orWhere(function($query) use ($expenseheadoptwo){
+                     $query->whereIn('child_two_id',$expenseheadoptwo);
                 });
             })
             ->get();
 
-            /* operating expense */
+            /* nonoperating expense */
             $nonopexpense=GeneralLedger::whereBetween('rec_date',[$datas,$datae])
             ->where(function($query) use ($expenseheadnop,$expenseheadnopone,$expenseheadnoptwo){
                 $query->orWhere(function($query) use ($expenseheadnop){
@@ -179,6 +183,14 @@ class IncomeStatementController extends Controller
                 });
                 $query->orWhere(function($query) use ($expenseheadnoptwo){
                      $query->whereIn('child_two_id',$expenseheadnoptwo);
+                });
+            })
+            ->get();
+            /* nonoperating expense */
+            $taxamount=GeneralLedger::whereBetween('rec_date',[$datas,$datae])
+            ->where(function($query) use ($tax_data){
+                $query->orWhere(function($query) use ($tax_data){
+                     $query->whereIn('child_one_id',$tax_data);
                 });
             })
             ->get();
@@ -202,6 +214,7 @@ class IncomeStatementController extends Controller
                     $nonopinc=0;
                     $opexp=0;
                     $nonopexp=0;
+                    $tax=0;
                     /* operating income */
                     if($opincome){
                         foreach($opincome as $opi){
@@ -285,15 +298,21 @@ class IncomeStatementController extends Controller
                             <th class="text-right"> Net Income Before Tax</th>
                             <th class="text-right"> '.(($nonopinc + $opinc)  - ($opexp + $nonopexp)).' </th>
                             </tr>';
-                    $data.='<tr>
-                            <th> </th>
-                            <th class="text-right">Tax</th>
-                            <th class="text-right"> 0 </th>
-                            </tr>';
+                    if($taxamount){
+                        foreach($taxamount as $t){
+                            $tax+=$t->dr;
+                            $data.='<tr class="table-info">';
+                            $data.='<td>'.$i++.'</td>';
+                            $data.='<td> '.$t->journal_title.' </td>';
+                            $data.='<td class="text-right"> '.$t->dr.' </td>';
+                            $data.='</tr>';
+                            
+                        }
+                    }
                     $data.='<tr>
                             <th> </th>
                             <th class="text-right"> Net Income</th>
-                            <th class="text-right"> '.(($nonopinc + $opinc)  - ($opexp + $nonopexp)).' </th>
+                            <th class="text-right"> '.(($nonopinc + $opinc)  - ($opexp + $nonopexp + $tax)).' </th>
                             </tr>';
 
             $data.='</tbody>

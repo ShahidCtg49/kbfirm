@@ -117,6 +117,14 @@
                         @endif
                       </div>
 
+                      <div class="col-sm-6 col-md-3">
+                          <select name="type" class="form-control" id="type">
+                              <option value="">Select Type</option>
+                                <option value="1">Investor</option>
+                              <option value="0">Director</option>
+                            </select>
+                        </div>
+
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>
                     </form>
