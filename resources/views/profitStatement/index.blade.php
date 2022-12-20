@@ -21,17 +21,32 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @forelse($profitStatement as $cat)
+                        @forelse($profitStatement as $profitStatement)
                         <tr>
                             <td>{{ ++$loop->index}}</td>
-                            <td>{{$cat->investor_id}}</td>
-                            <td>{{$cat->number_shares}}</td>
-                            <td>{{$cat->director_profit}}</td>
-                            <td>{{$cat->profit}}</td>
-                            <td>{{$cat->dec_date}}</td>
-                            <td>{{$cat->status}}</td>
+                            <td>{{$profitStatement->investor_id}}</td>
+                            <td>{{$profitStatement->number_shares}}</td>
+                            <td>{{$profitStatement->director_profit}}</td>
+                            <td>{{$profitStatement->profit}}</td>
+                            <td>{{$profitStatement->dec_date}}</td>
+                            <td class="text-center">
+                                @if($profitStatement->status == 1)
+                                    <span class="text-success text-danger">Paid</span>
+                                @else
+                                    <form method="post" 
+                                    action="{{ route('profitStatement.update',
+                                        $profitStatement)}}">
+                                    @csrf()
+                                    @method('PATCH')
+                                    <button type="submit" 
+                                        class="btn btn-sm btn-warning text-dark">
+                                        Pending?
+                                    </button>
+                                    </form>
+                                @endif
+                            </td>
                             <td>
-                                
+                            <a type="button" class="btn btn-sm btn-primary" href="{{ route('profitStatement.edit',$profitStatement->id)}}" title="Edit"><i class="mdi mdi-tooltip-edit"></i></a>
                             </td>
                         </tr>
                         @empty

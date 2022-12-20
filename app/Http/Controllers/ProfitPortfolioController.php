@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ProfitStatement;
 use App\Models\InvestorInformation;
 use App\Models\GeneralLedger;
 use App\Models\MasterAccount;
@@ -24,6 +25,13 @@ class ProfitPortfolioController extends Controller
      */
     public function details(Request $r){
         $year=$r->year;
+        $oldpp=ProfitStatement::where('profit_year',$year)->exists();
+        if($oldpp){
+            $msg=array("You have already declared profit for this year.");
+            echo json_encode($msg);
+            return;
+            exit;
+        }
         $acc_head=MasterAccount::all();
         /* operating income */
         $incomeheadop=array();
@@ -234,16 +242,51 @@ class ProfitPortfolioController extends Controller
                     $income=(($nonopinc + $opinc)  - ($opexp + $nonopexp + $tax));
 
         $director_profit=$r->director_profit;
+        $csr=$r->csr;
         $date_of_dec=$r->date_of_dec;
         $num_director=InvestorInformation::where('status',1)->where('type',0)->count();
         $num_shares=InvestorInformation::where('status',1)->sum('number_shares');
         $investor=InvestorInformation::where('status',1)->get();
         if($investor){
-            $data=view('profitPortfolio.profit', compact('date_of_dec','income','num_director','num_shares','investor','director_profit'))->render();
+            $data=view('profitPortfolio.profit', compact('year','csr','date_of_dec','income','num_director','num_shares','investor','director_profit'))->render();
         }else{
             $data="No investor found";
         }
         echo  json_encode($data);
         //print_r($r->year);
+    }
+   
+    public function store(Request $request){
+        $year=$request->pyear;
+        $oldpp=ProfitStatement::where('profit_year',$year)->exists();
+        if($oldpp){
+            $msg=array("You have already declared profit for this year.");
+            echo json_encode($msg);
+            return;
+            exit;
+        }
+        if($request->investor_id){
+            foreach($request->investor_id as $i=>$inv_id){
+                $ps=new ProfitStatement;
+                $ps->investor_id=$inv_id;
+                $ps->is_csr=0;
+                $ps->number_shares=$request->share[$i];
+                $ps->director_profit=$request->director_profit[$i];
+                $ps->profit=$request->profit[$i];
+                $ps->profit_year=$request->pyear;
+                $ps->dec_date=$request->date_of_declare;
+                $ps->status=0;
+                $ps->save();
+            }
+        }
+        if($request->is_csr > 0){
+            $ps=new ProfitStatement;
+            $ps->is_csr=1;
+            $ps->profit=$request->is_csr;
+            $ps->profit_year=$request->pyear;
+            $ps->dec_date=$request->date_of_declare;
+            $ps->status=0;
+            $ps->save();
+        }
     }
 }

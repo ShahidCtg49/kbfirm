@@ -101,6 +101,7 @@ Route::resource('projectInfo',ProjectInfoController::class);
 
 Route::get('profitPortfolio',[ProfitPortfolioController::class,'index'])->name('profitPortfolio.index');
 Route::get('profitPortfolio_details',[ProfitPortfolioController::class,'details'])->name('profitPortfolio.details');
+Route::post('profitPortfolio_store',[ProfitPortfolioController::class,'store'])->name('profitPortfolio.details.store');
 
 Route::resource('profitStatement',ProfitStatementController::class);
 Route::resource('balanceSheet',BalanceSheetController::class);

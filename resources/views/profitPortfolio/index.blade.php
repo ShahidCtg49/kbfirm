@@ -12,10 +12,16 @@
                         <input type="date" class="form-control" id="date_of_dec">
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="form-group">
-                        <label class="form-label">Director Profit</label>
+                        <label class="form-label">Director Profit (%)</label>
                         <input type="number" class="form-control" name="director_profit" id="director_profit">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="form-label">CSR Fund (%)</label>
+                        <input type="number" class="form-control" name="csr" id="csr">
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -49,12 +55,13 @@
 <script>
 	function get_details() {
 		var director_profit = $('#director_profit').val();
+		var csr = $('#csr').val();
 		var date_of_dec = $('#date_of_dec').val();
 		var year = $('#year').val();
 		if (director_profit) {
 			$.ajax({
 				url: "{{route('profitPortfolio.details')}}",
-				data: {'director_profit': director_profit,'year': year,'date_of_dec':date_of_dec},
+				data: {'director_profit': director_profit,'year': year,'date_of_dec':date_of_dec,'csr':csr},
 				dataType: 'json',
 				success: function(data) {
                     console.log(data);

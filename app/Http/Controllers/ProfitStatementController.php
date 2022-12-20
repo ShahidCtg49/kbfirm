@@ -14,7 +14,7 @@ class ProfitStatementController extends Controller
      */
     public function index()
     {
-        $profitStatement= ProfitStatement::paginate(10);
+        $profitStatement= ProfitStatement::get();
         return view('profitStatement.index', compact('profitStatement'));
     }
 
@@ -25,7 +25,7 @@ class ProfitStatementController extends Controller
      */
     public function create()
     {
-        //
+        return view('profitStatement.create');
     }
 
     /**
@@ -36,7 +36,10 @@ class ProfitStatementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cat = new ProfitStatement;
+        $cat->status = $request->status;
+        $cat->save();
+        return redirect()->route('profitStatement.index');
     }
 
     /**
@@ -58,7 +61,9 @@ class ProfitStatementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profitStatement=ProfitStatement::all();
+        $monthlyFee=profitStatement::findOrFail($id);
+        return view('profitStatement.edit',compact('profitStatement'));
     }
 
     /**
@@ -68,9 +73,13 @@ class ProfitStatementController extends Controller
      * @param  \App\Models\ProfitStatement  $profitStatement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProfitStatement $profitStatement)
     {
-        //
+        // dd($profitStatement);
+        // $profitStatement=profitStatement::findOrFail($id);
+        $profitStatement->status =1;
+        $profitStatement->save();
+        return redirect()->route('profitStatement.index');
     }
 
     /**

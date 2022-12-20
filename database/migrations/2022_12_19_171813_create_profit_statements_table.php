@@ -14,12 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('profit_statements', function (Blueprint $table) {
-            $table->string('investor_id');
-            $table->string('number_shares');
-            $table->string('director_profit');
-            $table->string('profit');
-            $table->string('dec_date');
-            $table->string('status');
+            $table->id();
+            $table->string('investor_id')->nullable();
+            $table->string('is_csr')->nullable();
+            $table->string('number_shares')->nullable();
+            $table->string('director_profit')->nullable();
+            $table->string('profit')->nullable();
+            $table->date('dec_date')->nullable();
+            $table->year('profit_year')->nullable();
+            $table->string('status')->default(0);
             $table->timestamps();
         });
     }
