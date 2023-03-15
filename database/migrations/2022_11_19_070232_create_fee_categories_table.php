@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::create('fee_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('is_once')->default(0);
 
             // default
             $table->unsignedBigInteger('created_by')->index()->default(2);
@@ -28,15 +29,18 @@ return new class extends Migration
         DB::table('fee_categories')->insert([
             [
                 'name' => 'Annual',
+                'is_once' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],[
                 'name' => 'Monthly',
+                'is_once' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'name' => 'Subscription',
+                'is_once' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

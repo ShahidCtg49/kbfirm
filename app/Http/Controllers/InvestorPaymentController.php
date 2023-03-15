@@ -6,6 +6,7 @@ use App\Models\InvestorPayment;
 use App\Models\InvestorInformation;
 use App\Models\ChildOne;
 use App\Models\ChildTwo;
+use App\Models\FeeCategory;
 use App\Models\MonthlyFees;
 use Illuminate\Http\Request;
 
@@ -67,7 +68,13 @@ class InvestorPaymentController extends Controller
     {
         $investor_id=$request->investor_id;
         $fees_month=$request->fees_month;
-        $fees=MonthlyFees::where('month',$fees_month)->sum('amount');
+        $is_once=$request->is_once;
+        if($is_once=="0"){
+            $fee_cat=FeeCategory::where('is_once',1)->pluck('id');
+            $fees=MonthlyFees::whereNotIn('category_id',[$fee_cat])->where('month',$fees_month)->sum('amount');
+        }else{
+            $fees=MonthlyFees::where('month',$fees_month)->sum('amount');
+        }
         $number_shares=InvestorInformation::where('id',$investor_id)->pluck('number_shares');
         $due=InvestorInformation::where('id',$investor_id)->sum('due');
         $pay_already=investorPayment::where('fees_month',$fees_month)->where('investor_id',$investor_id)->sum('amount');

@@ -8,22 +8,22 @@
       <h4 class="card-title">Create Monthly Fees</h4>
       <p class="card-description">Create Monthly Fees</p>
       <form class="forms-sample" method="post" action="{{ route ('monthlyFees.store') }}" enctype="multipart/form-data">
-      @csrf 
-      <div class="row">
+        @csrf
+        <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
               <label for="category_id">Category ID</label>
               <select name="category_id" class="form-control" id="category_id">
                 <option value="">Select Category</option>
                 @forelse($feeCategory as $m)
-                  <option value="{{$m->id}}" {{old('category_id')==$m->id?"selected":""}}>{{$m->name}}</option>
+                <option value="{{$m->id}}" {{old('category_id')==$m->id?"selected":""}}>{{$m->name}}</option>
                 @empty
                 <option value="">No head found</option>
                 @endforelse
               </select>
             </div>
           </div>
-          
+
           <div class="col-sm-6">
             <div class="form-group">
               <label for="month">Month</label> <br>
@@ -43,7 +43,7 @@
             </div>
           </div>
         </div>
-  
+
         <button type="submit" class="btn btn-primary mr-2">Submit</button>
       </form>
     </div>

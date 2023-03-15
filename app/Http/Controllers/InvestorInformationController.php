@@ -17,8 +17,8 @@ class InvestorInformationController extends Controller
      */
     public function index()
     {
-        $investor_information= InvestorInformation::paginate(10);
-        return view('investor.index',compact('investor_information'));
+        $investor_information = InvestorInformation::paginate(10);
+        return view('investor.index', compact('investor_information'));
     }
 
     /**
@@ -39,19 +39,19 @@ class InvestorInformationController extends Controller
      */
     public function store(AddNewRequest $request)
     {
-        $user=new User;
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->phone=$request->contact_no;
-        $user->role_id=4;
-        $user->password=sha1(123456);
-        if($user->save()){
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->contact_no;
+        $user->role_id = 4;
+        $user->password = sha1(123456);
+        if ($user->save()) {
             $cat = new InvestorInformation;
             $cat->investor_id = $request->investor_id;
-            if($request->has('image')){
-                $imageName= rand(111,999).time().'.'.$request->image->extension();
+            if ($request->has('image')) {
+                $imageName = rand(111, 999) . time() . '.' . $request->image->extension();
                 $request->image->move(public_path('uploads/investor'), $imageName);
-                $cat->image=$imageName;
+                $cat->image = $imageName;
             }
             $cat->name = $request->name;
             $cat->father_name = $request->father_name;
@@ -67,7 +67,7 @@ class InvestorInformationController extends Controller
             $cat->user_id = $user->id;
             $cat->save();
         }
-        
+
         return redirect()->route('investor.index');
     }
 
@@ -80,7 +80,7 @@ class InvestorInformationController extends Controller
     public function show($id)
     {
         $investor_information = InvestorInformation::findOrFail($id);
-        return view('investor.view',compact('investor_information'));
+        return view('investor.view', compact('investor_information'));
     }
 
     /**
@@ -92,7 +92,7 @@ class InvestorInformationController extends Controller
     public function edit($id)
     {
         $investor = InvestorInformation::findOrFail($id);
-        return view('investor.edit',compact('investor'));
+        return view('investor.edit', compact('investor'));
     }
 
     /**
@@ -104,12 +104,12 @@ class InvestorInformationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $investorInformation=InvestorInformation::find($id);
+        $investorInformation = InvestorInformation::find($id);
         $investorInformation->investor_id = $request->investor_id;
-        if($request->has('image')){
-            $imageName= rand(111,999).time().'.'.$request->image->extension();
+        if ($request->has('image')) {
+            $imageName = rand(111, 999) . time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads/investor'), $imageName);
-            $investorInformation->image=$imageName;
+            $investorInformation->image = $imageName;
         }
         $investorInformation->name = $request->name;
         $investorInformation->father_name = $request->father_name;

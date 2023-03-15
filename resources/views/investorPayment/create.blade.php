@@ -7,18 +7,27 @@
     <div class="card-body">
       <h4 class="card-title">Create Investor Payment</h4>
       <form class="forms-sample" method="post" action="{{ route('investorPayment.store') }}" enctype="multipart/form-data">
-      @csrf 
+        @csrf
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="investor_id">Investor ID</label>
+              <label for="investor_id">Investor </label>
               <select name="investor_id" onchange="get_fees()" class="form-control" id="investor_id">
-                <option value="">Select Category</option>
+                <option value="">Select Investor</option>
                 @forelse($investor as $m)
-                  <option value="{{$m->id}}" {{old('investor_id')==$m->id?"selected":""}}>{{$m->name}} - {{$m->contact_no}}</option>
+                <option value="{{$m->id}}" {{old('investor_id')==$m->id?"selected":""}}>{{$m->name}} - {{$m->contact_no}}</option>
                 @empty
                 <option value="">No Data Found</option>
                 @endforelse
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="is_once">Include One Time Payment (Subscription)</label> <br>
+              <select name="is_once" onchange="get_fees()" id="is_once" class="form-control">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
               </select>
             </div>
           </div>
@@ -58,9 +67,9 @@
               <select class="form-control" name="payment_method" id="payment_method">
                 <option value="">Select Method</option>
                 @forelse($paymethod as $pm)
-                  <option value="{{$pm['id']}}-{{$pm['table_name']}}">{{$pm['head_name']}} - {{$pm['head_code']}}</option>
+                <option value="{{$pm['id']}}-{{$pm['table_name']}}">{{$pm['head_name']}} - {{$pm['head_code']}}</option>
                 @empty
-                  <option value="">No Data Found</option>
+                <option value="">No Data Found</option>
                 @endforelse
               </select>
             </div>
@@ -102,31 +111,39 @@
 
 @push('scripts')
 <script>
-  function get_fees(){
-    let investor_id=$('#investor_id').val();
-    let fees_month=$('#fees_month').val();
+  function get_fees() {
+    let investor_id = $('#investor_id').val();
+    let fees_month = $('#fees_month').val();
+    let is_once = $('#is_once').val();
     //let fees_month=$('#fees_month').val();
-    
-    $.ajax({
-      dataType: "json",
-      url: "{{route('paymentAjax')}}",
-      data: {investor_id:investor_id,fees_month:fees_month},
-      success: function(data){
-        let totalpayable=0;
-        let fees=(data.number_shares * data.fees);
-        totalpayable=((fees + parseFloat(data.due)) - parseFloat(data.actual_amount));
-        $('.fees').text(data.fees);
-        $('.totalfees').text(fees);
-        $('.due').text(data.due);
-        $('.number_shares').text(data.number_shares);
-        $('#number_of_share').val(data.number_shares);
-        $('.pay_already').text(data.pay_already);
+    if (investor_id && fees_month) {
+      $.ajax({
+        dataType: "json",
+        url: "{{route('paymentAjax')}}",
+        data: {
+          investor_id: investor_id,
+          fees_month: fees_month,
+          is_once: is_once
+        },
+        success: function(data) {
+          let totalpayable = 0;
+          let fees = (data.number_shares * data.fees);
+          totalpayable = ((fees + parseFloat(data.due)) - parseFloat(data.actual_amount));
+          $('.fees').text(data.fees);
+          $('.totalfees').text(fees);
+          $('.due').text(data.due);
+          $('.number_shares').text(data.number_shares);
+          $('#number_of_share').val(data.number_shares);
+          $('.pay_already').text(data.pay_already);
 
-        $('.totalpayable').text(totalpayable);
-        $('#totalpayablep').val(totalpayable);
-        $('#totalpayable').val(totalpayable);
-      }
-    });
+          $('.totalpayable').text(totalpayable);
+          $('#totalpayablep').val(totalpayable);
+          $('#totalpayable').val(totalpayable);
+        }
+      });
+    } else {
+
+    }
   }
 </script>
 @endpush

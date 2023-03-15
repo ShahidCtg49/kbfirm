@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProfitStatement extends Model
 {
     use HasFactory;
+    public function investor(){
+        return $this->belongsTo(InvestorInformation::class);
+    }
 }

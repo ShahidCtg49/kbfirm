@@ -8,8 +8,8 @@
       <h4 class="card-title">Update Monthly Fees</h4>
       <p class="card-description"> Update Monthly Fees</p>
       <form class="forms-sample" method="post" action="{{ route ('monthlyFees.update',$monthlyFee->id) }}" enctype="multipart/form-data">
-      @csrf 
-      @method('patch')
+        @csrf
+        @method('patch')
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
@@ -17,14 +17,14 @@
               <select name="category_id" class="form-control" id="category_id">
                 <option value="">Select Category</option>
                 @forelse($feeCategory as $m)
-                  <option value="{{$m->id}}" {{old('category_id',$monthlyFee->category_id)==$m->id?"selected":""}}>{{$m->name}}</option>
+                <option value="{{$m->id}}" {{old('category_id',$monthlyFee->category_id)==$m->id?"selected":""}}>{{$m->name}}</option>
                 @empty
                 <option value="">No head found</option>
                 @endforelse
               </select>
             </div>
           </div>
-          
+
           <div class="col-sm-6">
             <div class="form-group">
               <label for="month">Month</label> <br>

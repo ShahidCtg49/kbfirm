@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,14 +22,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('father_name');
             $table->string('contact_no')->unique();
-            $table->string('email')->unique();
-            $table->string('national_id')->unique();
+            $table->string('email')->unique()->nullable();
+            $table->string('national_id')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('number_shares')->nullable();
-            $table->string('nominee_name');
-            $table->string('relationship');
+            $table->string('nominee_name')->nullable();
+            $table->string('relationship')->nullable();
             $table->string('joining_date')->nullable();
-            $table->decimal('due',10,2)->default(0);
+            $table->decimal('due', 10, 2)->default(0);
             $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 

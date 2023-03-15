@@ -1,9 +1,13 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client';
+import IncomeReport from './Component/Report/IncomeReport';
 
 export default function App(){
     return(
-        <h1>How To Install React in Laravel 9 with Vite</h1>
+        <>
+			<h1> </h1>
+			<IncomeReport />
+        </>
     );
 }
 

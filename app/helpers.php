@@ -9,7 +9,7 @@ function vite_assets(): HtmlString
     
     if (app()->environment('local')) {
         try {
-            Http::get("http://localhost:3000");
+            Http::get("http://localhost:8000");
             $devServerIsRunning = true;
         } catch (Exception) {
         }
@@ -17,8 +17,8 @@ function vite_assets(): HtmlString
     
     if ($devServerIsRunning) {
         return new HtmlString(<<<HTML
-            <script type="module" src="http://localhost:3000/@vite/client"></script>
-            <script type="module" src="http://localhost:3000/resources/js/app.js"></script>
+            <script type="module" src="http://localhost:8000/@vite/client"></script>
+            <script type="module" src="http://localhost:8000/resources/js/app.js"></script>
         HTML);
     }
     

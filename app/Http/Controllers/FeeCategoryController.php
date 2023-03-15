@@ -37,9 +37,10 @@ class FeeCategoryController extends Controller
     public function store(Request $request)
     {
         $cat = new feeCategory;
-            $cat->name = $request->name;
-            $cat->save();
-           return redirect()->route('feeCategory.index'); 
+        $cat->is_once = $request->is_once;
+        $cat->name = $request->name;
+        $cat->save();
+        return redirect()->route('feeCategory.index'); 
     }
 
     /**
@@ -75,6 +76,7 @@ class FeeCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $feeCategory=feeCategory::findOrFail($id);
+        $feeCategory->is_once = $request->is_once;
         $feeCategory->name = $request->name;
         $feeCategory->save();
         return redirect()->route('feeCategory.index');

@@ -8,10 +8,10 @@
       <h4 class="card-title">Update Fee Category</h4>
       <p class="card-description"> Update Fee Category</p>
       <form class="forms-sample" method="post" action="{{ route ('feeCategory.update',$feeCategory->id) }}" enctype="multipart/form-data">
-      @csrf 
-      @method('patch')
-      <input type="hidden" name="uptoken" value="{{$feeCategory->id}}">
-      <div class="form-group">
+        @csrf
+        @method('patch')
+        <input type="hidden" name="uptoken" value="{{$feeCategory->id}}">
+        <div class="form-group">
           <label for="name">Name</label>
           <input type="text" value="{{$feeCategory->name}}" class="form-control" name="name" id="name" placeholder="Name">
         </div>
