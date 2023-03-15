@@ -24,19 +24,20 @@ class AddNewRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'father_name'=>'required',
-            'nominee_name'=>'required',
-            'relationship'=>'required',
-            'joining_date'=>'required',
-            'email'=>'required|unique:investor_information,email',
-            'contact_no'=>'required|unique:investor_information,contact_no',
-            'national_id'=>'required|unique:investor_information,national_id',
-            'investor_id'=>'required|unique:investor_information,investor_id'
+            'name' => 'required',
+            'father_name' => 'required',
+            //'nominee_name'=>'required',
+            //'relationship'=>'required',
+            'joining_date' => 'required',
+            'email' => 'nullable|sometimes|unique:investor_information,email',
+            'contact_no' => 'required|unique:investor_information,contact_no',
+            'national_id' => 'unique:investor_information,national_id',
+            'investor_id' => 'required|unique:investor_information,investor_id'
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
             'required' => "The :attribute filed is required",
             'unique' => "The :attribute already used. Please try another",

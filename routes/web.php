@@ -70,6 +70,9 @@ Route::group(['middleware'=>isOwner::class],function() {
     });
 });
 
+require __DIR__.'/investor.php';
+
+
 
 Route::resource('investor',InvestorInformationController::class);
 Route::resource('document',DocumentController::class);
@@ -111,3 +114,7 @@ Route::get('project_details',[ClientPaymentController::class,'project_details'])
 Route::get('react', function () {
     return view('welcome');
 });
+
+
+
+// route file

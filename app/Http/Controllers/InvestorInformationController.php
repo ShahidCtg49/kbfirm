@@ -7,9 +7,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Investor\AddNewRequest;
 use App\Http\Requests\Investor\UpdateRequest;
+use Illuminate\Support\Facades\DB;
+use App\Http\Traits\ResponseTrait;
 
 class InvestorInformationController extends Controller
 {
+    use ResponseTrait;
     /**
      * Display a listing of the resource.
      *
@@ -39,36 +42,44 @@ class InvestorInformationController extends Controller
      */
     public function store(AddNewRequest $request)
     {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->contact_no;
-        $user->role_id = 4;
-        $user->password = sha1(123456);
-        if ($user->save()) {
-            $cat = new InvestorInformation;
-            $cat->investor_id = $request->investor_id;
-            if ($request->has('image')) {
-                $imageName = rand(111, 999) . time() . '.' . $request->image->extension();
-                $request->image->move(public_path('uploads/investor'), $imageName);
-                $cat->image = $imageName;
+        try {
+            DB::beginTransaction();
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->contact_no;
+            $user->role_id = 4;
+            $user->password = sha1(123456);
+            if ($user->save()) {
+                $cat = new InvestorInformation;
+                $cat->investor_id = $request->investor_id;
+                if ($request->has('image')) {
+                    $imageName = rand(111, 999) . time() . '.' . $request->image->extension();
+                    $request->image->move(public_path('uploads/investor'), $imageName);
+                    $cat->image = $imageName;
+                }
+                $cat->name = $request->name;
+                $cat->father_name = $request->father_name;
+                $cat->contact_no = $request->contact_no;
+                $cat->email = $request->email;
+                $cat->national_id = $request->national_id;
+                $cat->address = $request->address;
+                $cat->number_shares = $request->number_shares;
+                $cat->type = $request->type;
+                $cat->nominee_name = $request->nominee_name;
+                $cat->relationship = $request->relationship;
+                $cat->joining_date = $request->joining_date;
+                $cat->user_id = $user->id;
+                $cat->save();
+                DB::commit();
             }
-            $cat->name = $request->name;
-            $cat->father_name = $request->father_name;
-            $cat->contact_no = $request->contact_no;
-            $cat->email = $request->email;
-            $cat->national_id = $request->national_id;
-            $cat->address = $request->address;
-            $cat->number_shares = $request->number_shares;
-            $cat->type = $request->type;
-            $cat->nominee_name = $request->nominee_name;
-            $cat->relationship = $request->relationship;
-            $cat->joining_date = $request->joining_date;
-            $cat->user_id = $user->id;
-            $cat->save();
-        }
 
-        return redirect()->route('investor.index');
+            return redirect()->route('investor.index')->with($this->resMessageHtml(true,null,'Investor Successfully created.'));
+
+        } catch (\Exception $err) {
+            DB::rollback();
+            return redirect()->back()->with($this->resMessageHtml(false,true,$err->getMessage()));
+        }
     }
 
     /**

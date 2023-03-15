@@ -40,6 +40,8 @@ class AuthenticationController extends Controller
             if($user) {
                 $this->setSession($user);
                 return redirect()->route($user->role->identity.'.dashboard')->with($this->resMessageHtml (true, null, 'Successfully login'));
+            }else{
+                return redirect()->back()->with($this->resMessageHtml(false, 'Wrong credantial!.Please try again'));
             }
         }catch(Exception $e) {
             dd($e);

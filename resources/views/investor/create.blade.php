@@ -36,7 +36,7 @@
 
         <div class="col-sm-6 col-md-6">
           <label for="contact_no">Contact No</label>
-          <input type="text" class="form-control" name="contact_no" id="contact_no">
+          <input type="tel" class="form-control" name="contact_no" id="contact_no">
           @if($errors->has('contact_no'))
           <small class="d-block text-danger">
             {{$errors->first('contact_no')}}
@@ -47,7 +47,7 @@
         <div class="col-sm-6 col-md-6">
           <div class="form-group">
             <label class="form-label">Email Address</label>
-            <input class="form-control" name="email" id="email">
+            <input class="form-control" name="email" id="email" type="email">
             @if($errors->has('email'))
             <small class="d-block text-danger">
               {{$errors->first('email')}}
@@ -85,7 +85,7 @@
 
         <div class="col-sm-6 col-md-6">
           <label for="number">National ID</label>
-          <input type="text" class="form-control" name="national_id" id="national_id">
+          <input type="number" class="form-control" name="national_id" id="national_id">
           @if($errors->has('national_id'))
           <small class="d-block text-danger">
             {{$errors->first('national_id')}}
